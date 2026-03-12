@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Votre expérience – Royal Burger City Lille</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:       #C0191A;
+      --red-deep:  #8B0E0E;
+      --red-dark:  #130303;
+      --cream:     #FFF5F0;
+      --white:     #FFFFFF;
+      --green:     #1A6B40;
+      --green-lt:  #25A05E;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--red-dark);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ── Fond ambiance ville ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 90% 70% at 50% 20%, rgba(192,25,26,.28) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 50% at 15% 80%, rgba(139,14,14,.20) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 85% 75%, rgba(139,14,14,.15) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Silhouette buildings ── */
+    .buildings {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      height: 38%;
+      display: flex;
+      align-items: flex-end;
+      opacity: .22;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .b { background: var(--red-deep); flex-shrink: 0; }
+
+    /* ── Card ── */
+    .card {
+      position: relative;
+      z-index: 1;
+      background: rgba(20,3,3,.78);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(192,25,26,.28);
+      border-radius: 28px;
+      padding: 44px 44px 40px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow:
+        0 0 0 1px rgba(192,25,26,.10),
+        0 20px 60px rgba(0,0,0,.55),
+        0 6px 20px rgba(192,25,26,.18);
+      animation: rise .65s cubic-bezier(.22,1,.36,1) both;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(30px) scale(.97); }
+      to   { opacity: 1; transform: translateY(0)    scale(1); }
+    }
+
+    /* ── Logo ── */
+    .logo-wrap {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 2.5px solid var(--red);
+      box-shadow:
+        0 0 0 5px rgba(192,25,26,.15),
+        0 0 30px rgba(192,25,26,.40),
+        0 8px 24px rgba(0,0,0,.5);
+      overflow: hidden;
+      margin: 0 auto 20px;
+      background: var(--red-deep);
+      animation: pop .55s .2s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    .logo-wrap img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+
+    @keyframes pop {
+      from { opacity: 0; transform: scale(.4); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    /* ── Nom ── */
+    .brand {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 34px;
+      letter-spacing: 3.5px;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .brand span { color: var(--red); }
+
+    .location {
+      font-size: 11.5px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.32);
+      font-weight: 500;
+      margin-bottom: 28px;
+    }
+
+    /* ── Titre ── */
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 30px;
+      letter-spacing: 2px;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: rgba(255,255,255,.42);
+      line-height: 1.65;
+      margin-bottom: 32px;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .divider span {
+      flex: 1; height: 1px;
+      background: linear-gradient(to right, transparent, rgba(192,25,26,.4), transparent);
+    }
+    .divider em {
+      font-style: normal;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.22);
+    }
+
+    /* ── Boutons ── */
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 17px 28px;
+      border-radius: 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      border: none;
+      transition: transform .18s ease, box-shadow .18s ease, filter .15s ease;
+      letter-spacing: -.1px;
+    }
+    .btn:hover  { transform: translateY(-3px); filter: brightness(1.08); }
+    .btn:active { transform: translateY(0) scale(.98); filter: brightness(.96); }
+
+    .btn-icon { font-size: 22px; flex-shrink: 0; }
+    .btn-text { display: flex; flex-direction: column; align-items: flex-start; }
+    .btn-label { line-height: 1.2; }
+    .btn-sub   { font-size: 11px; font-weight: 400; opacity: .72; margin-top: 2px; }
+
+    /* Parfait — vert */
+    .btn-perfect {
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-lt) 100%);
+      color: #fff;
+      box-shadow: 0 6px 22px rgba(26,107,64,.32);
+    }
+
+    /* Problème — discret */
+    .btn-problem {
+      background: rgba(255,255,255,.055);
+      color: rgba(255,255,255,.68);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 3px 12px rgba(0,0,0,.2);
+    }
+    .btn-problem:hover { background: rgba(255,255,255,.09); }
+
+    /* ── Footer ── */
+    .footer {
+      position: relative;
+      z-index: 1;
+      margin-top: 22px;
+      font-size: 10.5px;
+      color: rgba(255,255,255,.16);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    /* ── Responsive mobile ── */
+    @media (max-width: 500px) {
+      .card { padding: 36px 24px 32px; border-radius: 22px; }
+      h1 { font-size: 26px; }
+      .brand { font-size: 30px; }
+      .logo-wrap { width: 78px; height: 78px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Silhouette ville -->
+  <div class="buildings">
+    <div class="b" style="width:5%;height:60%"></div>
+    <div class="b" style="width:3%;height:38%"></div>
+    <div class="b" style="width:6%;height:72%"></div>
+    <div class="b" style="width:2%;height:42%"></div>
+    <div class="b" style="width:4%;height:55%"></div>
+    <div class="b" style="width:7%;height:85%"></div>
+    <div class="b" style="width:3%;height:47%"></div>
+    <div class="b" style="width:5%;height:63%"></div>
+    <div class="b" style="width:2%;height:35%"></div>
+    <div class="b" style="width:6%;height:78%"></div>
+    <div class="b" style="width:4%;height:52%"></div>
+    <div class="b" style="width:3%;height:66%"></div>
+    <div class="b" style="width:5%;height:44%"></div>
+    <div class="b" style="width:7%;height:80%"></div>
+    <div class="b" style="width:3%;height:50%"></div>
+    <div class="b" style="width:5%;height:60%"></div>
+    <div class="b" style="width:3%;height:36%"></div>
+    <div class="b" style="width:6%;height:70%"></div>
+    <div class="b" style="width:4%;height:55%"></div>
+    <div class="b" style="width:3%;height:40%"></div>
+  </div>
+
+  <div class="card">
+
+    <div class="logo-wrap">
+      <img
+        src="https://royalburgercity.fr/wp-content/uploads/2020/09/192-ROYAL-BURGER-CITY.png"
+        alt="Royal Burger City"
+        onerror="this.parentElement.innerHTML='🍔'"
+      />
+    </div>
+
+    <div class="brand">Royal<span>Burger</span>City</div>
+    <div class="location">📍 Lille</div>
+
+    <h1>Comment s'est passée<br>votre visite ?</h1>
+    <p class="subtitle">
+      Votre avis compte énormément pour nous.<br>
+      Ça ne prend que 30 secondes !
+    </p>
+
+    <div class="divider">
+      <span></span><em>Votre avis</em><span></span>
+    </div>
+
+    <div class="btn-group">
+
+      <!-- ✅ Remplacez VOTRE_LIEN_GOOGLE_AVIS_ICI -->
+      <a
+        href="VOTRE_LIEN_GOOGLE_AVIS_ICI"
+        target="_blank"
+        rel="noopener"
+        class="btn btn-perfect"
+      >
+        <span class="btn-icon">⭐</span>
+        <span class="btn-text">
+          <span class="btn-label">C'était parfait !</span>
+          <span class="btn-sub">Laisser un avis Google</span>
+        </span>
+      </a>
+
+      <!-- ⚠️ Remplacez VOTRE_LIEN_PAGE_CONTACT_ICI -->
+      <a
+        href="VOTRE_LIEN_PAGE_CONTACT_ICI"
+        class="btn btn-problem"
+      >
+        <span class="btn-icon">🙁</span>
+        <span class="btn-text">
+          <span class="btn-label">J'ai eu un problème</span>
+          <span class="btn-sub">Nous contacter directement</span>
+        </span>
+      </a>
+
+    </div>
+  </div>
+
+  <p class="footer">Royal Burger City &nbsp;•&nbsp; Lille</p>
+
+</body>
+</html>
