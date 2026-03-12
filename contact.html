@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nous contacter – Royal Burger City Lille</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:      #C0191A;
+      --red-deep: #8B0E0E;
+      --red-dark: #130303;
+      --cream:    #FFF5F0;
+      --white:    #FFFFFF;
+    }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--red-dark);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 90% 70% at 50% 20%, rgba(192,25,26,.22) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .buildings {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      height: 38%;
+      display: flex;
+      align-items: flex-end;
+      opacity: .22;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .b { background: var(--red-deep); flex-shrink: 0; }
+
+    /* ── Card ── */
+    .card {
+      position: relative;
+      z-index: 1;
+      background: rgba(20,3,3,.78);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(192,25,26,.28);
+      border-radius: 28px;
+      padding: 40px 44px 36px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,.55), 0 6px 20px rgba(192,25,26,.15);
+      animation: rise .65s cubic-bezier(.22,1,.36,1) both;
+    }
+    @keyframes rise {
+      from { opacity:0; transform:translateY(28px) scale(.97); }
+      to   { opacity:1; transform:translateY(0) scale(1); }
+    }
+
+    /* ── Logo ── */
+    .logo-wrap {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      border: 2px solid var(--red);
+      box-shadow: 0 0 0 4px rgba(192,25,26,.15), 0 0 24px rgba(192,25,26,.35);
+      overflow: hidden;
+      margin: 0 auto 16px;
+      background: var(--red-deep);
+    }
+    .logo-wrap img { width:100%; height:100%; object-fit:cover; display:block; }
+
+    .brand {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 3px;
+      margin-bottom: 3px;
+    }
+    .brand span { color: var(--red); }
+
+    .location {
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.30);
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      letter-spacing: 2px;
+      color: var(--cream);
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      font-size: 13.5px;
+      color: rgba(255,255,255,.40);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    /* ── Formulaire ── */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: left;
+      margin-bottom: 16px;
+    }
+
+    label {
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.35);
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 10px;
+      padding: 13px 16px;
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color .2s ease, background .2s ease;
+      resize: none;
+    }
+    input::placeholder, textarea::placeholder { color: rgba(255,255,255,.22); }
+    input:focus, textarea:focus, select:focus {
+      border-color: rgba(192,25,26,.55);
+      background: rgba(255,255,255,.09);
+    }
+    select option { background: #1A0404; color: white; }
+
+    textarea { height: 100px; }
+
+    /* ── Bouton envoyer ── */
+    .btn-send {
+      width: 100%;
+      padding: 16px;
+      background: var(--red);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: .3px;
+      transition: transform .15s ease, filter .15s ease, box-shadow .15s ease;
+      box-shadow: 0 6px 20px rgba(192,25,26,.30);
+    }
+    .btn-send:hover  { transform: translateY(-2px); filter: brightness(1.12); }
+    .btn-send:active { transform: scale(.98); }
+
+    /* ── Message de confirmation ── */
+    .confirmation {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 20px 0 8px;
+      animation: rise .5s cubic-bezier(.22,1,.36,1) both;
+    }
+    .confirmation .check {
+      width: 64px; height: 64px;
+      background: rgba(34,139,74,.18);
+      border: 2px solid rgba(34,139,74,.45);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+    }
+    .confirmation h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      letter-spacing: 2px;
+      color: var(--cream);
+    }
+    .confirmation p {
+      font-size: 13.5px;
+      color: rgba(255,255,255,.42);
+      line-height: 1.6;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      position: relative; z-index: 1;
+      margin-top: 20px;
+      font-size: 10.5px;
+      color: rgba(255,255,255,.14);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 500px) {
+      .card { padding: 32px 22px 28px; }
+      h1 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="buildings">
+    <div class="b" style="width:5%;height:60%"></div>
+    <div class="b" style="width:3%;height:38%"></div>
+    <div class="b" style="width:6%;height:72%"></div>
+    <div class="b" style="width:2%;height:42%"></div>
+    <div class="b" style="width:4%;height:55%"></div>
+    <div class="b" style="width:7%;height:85%"></div>
+    <div class="b" style="width:3%;height:47%"></div>
+    <div class="b" style="width:5%;height:63%"></div>
+    <div class="b" style="width:2%;height:35%"></div>
+    <div class="b" style="width:6%;height:78%"></div>
+    <div class="b" style="width:4%;height:52%"></div>
+    <div class="b" style="width:3%;height:66%"></div>
+    <div class="b" style="width:5%;height:44%"></div>
+    <div class="b" style="width:7%;height:80%"></div>
+    <div class="b" style="width:3%;height:50%"></div>
+    <div class="b" style="width:5%;height:60%"></div>
+    <div class="b" style="width:3%;height:36%"></div>
+    <div class="b" style="width:6%;height:70%"></div>
+    <div class="b" style="width:4%;height:55%"></div>
+    <div class="b" style="width:3%;height:40%"></div>
+  </div>
+
+  <div class="card">
+
+    <div class="logo-wrap">
+      <img src="https://royalburgercity.fr/wp-content/uploads/2020/09/192-ROYAL-BURGER-CITY.png" alt="Royal Burger City" onerror="this.parentElement.innerHTML='🍔'"/>
+    </div>
+    <div class="brand">Royal<span>Burger</span>City</div>
+    <div class="location">📍 Lille</div>
+
+    <!-- Formulaire -->
+    <div id="form-section">
+      <h1>Dites-nous ce qui<br>s'est passé</h1>
+      <p class="subtitle">Nous prenons chaque retour au sérieux.<br>Notre équipe vous répondra rapidement.</p>
+
+      <div class="form-group">
+        <div>
+          <label>Votre prénom</label>
+          <input type="text" id="prenom" placeholder="Ex : Marie" />
+        </div>
+        <div>
+          <label>Objet de votre problème</label>
+          <select id="objet">
+            <option value="" disabled selected>Sélectionnez une catégorie</option>
+            <option>Commande incorrecte</option>
+            <option>Temps d'attente trop long</option>
+            <option>Qualité du repas</option>
+            <option>Accueil / Service</option>
+            <option>Propreté du restaurant</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div>
+          <label>Votre message</label>
+          <textarea id="message" placeholder="Décrivez votre expérience..."></textarea>
+        </div>
+      </div>
+
+      <button class="btn-send" onclick="envoyerMessage()">Envoyer mon message</button>
+    </div>
+
+    <!-- Confirmation (affichée après envoi) -->
+    <div class="confirmation" id="confirmation">
+      <div class="check">✓</div>
+      <h2>Message bien reçu !</h2>
+      <p>Merci de nous avoir contactés.<br>Notre équipe reviendra vers vous<br>dans les plus brefs délais.</p>
+    </div>
+
+  </div>
+
+  <p class="footer">Royal Burger City &nbsp;•&nbsp; Lille</p>
+
+  <script>
+    function envoyerMessage() {
+      const prenom  = document.getElementById('prenom').value.trim();
+      const objet   = document.getElementById('objet').value;
+      const message = document.getElementById('message').value.trim();
+
+      // Validation simple
+      if (!objet || !message) {
+        const field = !objet ? 'objet' : 'message';
+        const el = document.getElementById(field);
+        el.style.borderColor = 'rgba(192,25,26,.8)';
+        setTimeout(() => el.style.borderColor = '', 1500);
+        return;
+      }
+
+      // Masquer le formulaire, afficher la confirmation
+      document.getElementById('form-section').style.display = 'none';
+      const conf = document.getElementById('confirmation');
+      conf.style.display = 'flex';
+    }
+  </script>
+
+</body>
+</html>
